@@ -21,7 +21,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new ManifestPlugin(),
-  ],
+  plugins: [new ManifestPlugin()],
+  devServer: {
+    contentBase: '/public/dist',
+    port: 3500,
+  },
 };
