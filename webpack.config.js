@@ -3,7 +3,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.js',
+    main: './src/index.jsx',
   },
   output: {
     path: path.join(__dirname, './public/dist'),
@@ -13,12 +13,18 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   module: {
-    rules:[
+    rules: [
       {
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      }
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
     ],
   },
   plugins: [
