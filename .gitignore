@@ -220,7 +220,8 @@ xcuserdata/
 ### ReactNative.macOS Stack ###
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 
@@ -269,6 +270,9 @@ gradle-app.setting
 /test/tmp/
 /test/version_tmp/
 /tmp/
+
+# React
+dist/
 
 # Used by dotenv library to load environment variables.
 # .env
