@@ -10,9 +10,7 @@ class Test extends React.Component {
   }
 
   render() {
-    return (
-      <div>{this.state.test}</div>
-    );
+    return <div>{this.state.test}</div>;
   }
 }
 
