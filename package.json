@@ -8,9 +8,10 @@
     "build": "npm-run-all clean build:production"
   },
   "dependencies": {
+    "history": "^4.7.2",
+    "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "history": "^4.7.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -45,7 +46,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslist --fix src/*",
+      "eslint --fix src/**/*",
       "git add"
     ]
   }

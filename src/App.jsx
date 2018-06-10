@@ -7,8 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
 
 import reducers from './reducers';
-import Count from './components/Count';
-import ProjectList from './components/ProjectList';
+import Count from './components/pages/Count';
+import ProjectList from './components/pages/ProjectList';
 
 const history = createBrowserHistory();
 const composeEnhancers =
