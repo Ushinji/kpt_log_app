@@ -1,17 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 
-class Test extends React.Component {
-  constructor(prop) {
-    super(prop);
-    this.state = {
-      test: 'hogehoge',
-    };
-  }
-
-  render() {
-    return <div>{this.state.test}ほげえええええええええええええええ</div>;
-  }
-}
-
-ReactDOM.render(<Test />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
