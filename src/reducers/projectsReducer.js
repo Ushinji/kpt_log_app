@@ -1,21 +1,11 @@
-const initialState = {
-  projects: [
-    {
-      name: 'プロジェクト１',
-    },
-    {
-      name: 'プロジェクト２',
-    },
-    {
-      name: 'プロジェクト3',
-    },
-  ],
-};
+import constants from '../constants';
+
+const initialState = [{}];
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'TEST_ACTION_TYPE':
-      return state;
+    case constants.SET_PROJECTS:
+      return action.projects;
     default:
       return state;
   }
