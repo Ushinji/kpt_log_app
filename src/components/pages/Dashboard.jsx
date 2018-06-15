@@ -46,7 +46,11 @@ class Count extends React.Component {
         <Query
           query={gql`
             {
-              testField
+              user {
+                id
+                name
+                email
+              }
             }
           `}
         >
