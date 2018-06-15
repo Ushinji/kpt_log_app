@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 import { hot } from 'react-hot-loader';
 
 import reducers from './reducers';
-import Count from './components/pages/Count';
+import Dashboard from './components/pages/Dashboard';
 import ProjectList from './components/pages/ProjectList';
 
 const history = createBrowserHistory();
@@ -42,7 +42,7 @@ const App = () => (
     <ConnectedRouter history={history}>
       <Switch>
         <Redirect exact from="/" to="/dashboad" />
-        <Route exact path="/dashboad" component={Count} />
+        <Route exact path="/dashboad" component={Dashboard} />
         <Route exact path="/projects" component={ProjectList} />
       </Switch>
     </ConnectedRouter>
