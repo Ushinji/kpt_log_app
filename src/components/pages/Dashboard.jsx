@@ -1,5 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import gql from 'graphql-tag';
+import { Query, ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+
+const client = new ApolloClient({
+  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+});
 
 class Count extends React.Component {
   constructor(props) {
@@ -18,12 +24,29 @@ class Count extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>ほげえええええええええええ</div>
-        <button onClick={this.handleClick}>ぼたん</button>
-        <div>{this.state.count}</div>
-        <Link to="/projects">ProjectList</Link>
-      </div>
+      <ApolloProvider client={client}>
+        <Query
+          query={gql`
+            {
+              rates(currency: "USD") {
+                currency
+                rate
+              }
+            }
+          `}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
+
+            return data.rates.map(({ currency, rate }) => (
+              <div key={currency}>
+                <p>{`${currency}： ${rate}`}</p>
+              </div>
+            ));
+          }}
+        </Query>
+      </ApolloProvider>
     );
   }
 }
