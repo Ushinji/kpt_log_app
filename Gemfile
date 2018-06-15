@@ -8,6 +8,8 @@ gem 'mysql2', '~> 0.4.4'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bcrypt', '~> 3.1.7'
+gem 'graphql', '1.7.7'
+gem 'graphiql-rails'
 
 group :production do
   gem 'server-starter'
@@ -29,3 +31,5 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'graphiql-rails', group: :development
