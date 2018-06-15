@@ -41,8 +41,8 @@ const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Redirect exact from="/" to="/dashboad" />
-        <Route exact path="/dashboad" component={Dashboard} />
+        <Redirect exact from="/" to="/dashboard" />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/projects" component={ProjectList} />
       </Switch>
     </ConnectedRouter>
