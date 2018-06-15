@@ -1,2 +1,5 @@
 <div id="root"></div>
+<script type="text/javascript">
+ window.csrfToken = <%= raw form_authenticity_token.to_json %>
+</script>
 <script src="<%= assets_path('main.js')%>"></script>

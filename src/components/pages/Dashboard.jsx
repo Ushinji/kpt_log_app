@@ -1,10 +1,27 @@
 import React from 'react';
+import { ApolloProvider, Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Query, ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+const httpLink = createHttpLink({
+  uri: '/api/graphql',
+  credentials: 'include',
+});
+
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': window.csrfToken,
+  },
+}));
 
 const client = new ApolloClient({
-  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 class Count extends React.Component {
@@ -23,27 +40,22 @@ class Count extends React.Component {
   }
 
   render() {
+    console.log(window.csrfToken);
     return (
       <ApolloProvider client={client}>
         <Query
           query={gql`
             {
-              rates(currency: "USD") {
-                currency
-                rate
-              }
+              testField
             }
           `}
         >
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;
+            console.log(data);
 
-            return data.rates.map(({ currency, rate }) => (
-              <div key={currency}>
-                <p>{`${currency}： ${rate}`}</p>
-              </div>
-            ));
+            return <div>200 ok</div>;
           }}
         </Query>
       </ApolloProvider>
