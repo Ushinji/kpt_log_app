@@ -26,21 +26,22 @@ const client = new ApolloClient({
 });
 
 const Dashboard = () => {
-  const GET_KPT_LOG_LIST = `
-  {
-    user {
-      kpt_logs {
-        edges {
-          node {
-            id
-            keep
-            problem
-            try
+  const GET_KPT_LOG_LIST = gql`
+    {
+      user {
+        kpt_logs {
+          edges {
+            node {
+              id
+              keep
+              problem
+              try
+            }
           }
         }
       }
     }
-  }`;
+  `;
 
   const kptLogItems = keptLogs => (
     <div>
@@ -60,11 +61,7 @@ const Dashboard = () => {
   return (
     <ApolloProvider client={client}>
       <div>
-        <Query
-          query={gql`
-            ${GET_KPT_LOG_LIST}
-          `}
-        >
+        <Query query={GET_KPT_LOG_LIST}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;

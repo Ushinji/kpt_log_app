@@ -7,6 +7,26 @@ const CREATE_KPT_LOG = gql`
     createKptLogMutation(input: { keep: $keep, problem: $problem, try: $try }) {
       kpt_log {
         id
+        keep
+        problem
+        try
+      }
+    }
+  }
+`;
+
+const GET_KPT_LOG_LIST = gql`
+  {
+    user {
+      kpt_logs {
+        edges {
+          node {
+            id
+            keep
+            problem
+            try
+          }
+        }
       }
     }
   }
@@ -50,7 +70,19 @@ class AddKptLog extends React.Component {
     const { keep, problem } = this.state;
 
     return (
-      <Mutation mutation={CREATE_KPT_LOG}>
+      <Mutation
+        mutation={CREATE_KPT_LOG}
+        update={(cache, { data }) => {
+          console.log(data);
+          const cacheData = cache.readQuery({ query: GET_KPT_LOG_LIST });
+          // MEMO: とりあえず、先頭データをコピー・追加をして、キャッシュ変更が画面表示に反映されるかテスト
+          cacheData.user.kpt_logs.edges.push(cacheData.user.kpt_logs.edges[0]);
+          cache.writeQuery({
+            query: GET_KPT_LOG_LIST,
+            data: cacheData,
+          });
+        }}
+      >
         {createKptLog => (
           <div>
             <form
