@@ -13,4 +13,12 @@ Types::QueryType = GraphQL::ObjectType.define do
       ctx[:current_user]
     }
   end
+
+  field :kpt_logs do
+    type types[Types::KptLogType]
+
+    resolve ->(_obj, _args, ctx) {
+      KptLog.where(user_id: ctx[:current_user].id)
+    }
+  end
 end

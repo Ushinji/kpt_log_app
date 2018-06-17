@@ -1,36 +1,6 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-
-const CREATE_KPT_LOG = gql`
-  mutation createKptLog($keep: String!, $problem: String!, $try: String!) {
-    createKptLogMutation(input: { keep: $keep, problem: $problem, try: $try }) {
-      kpt_log {
-        id
-        keep
-        problem
-        try
-      }
-    }
-  }
-`;
-
-const GET_KPT_LOG_LIST = gql`
-  {
-    user {
-      kpt_logs {
-        edges {
-          node {
-            id
-            keep
-            problem
-            try
-          }
-        }
-      }
-    }
-  }
-`;
+import Queries from '../../queries';
 
 class AddKptLog extends React.Component {
   constructor(props) {
@@ -71,14 +41,13 @@ class AddKptLog extends React.Component {
 
     return (
       <Mutation
-        mutation={CREATE_KPT_LOG}
+        mutation={Queries.CREATE_KPT_LOG}
         update={(cache, { data }) => {
-          console.log(data);
-          const cacheData = cache.readQuery({ query: GET_KPT_LOG_LIST });
-          // MEMO: とりあえず、先頭データをコピー・追加をして、キャッシュ変更が画面表示に反映されるかテスト
-          cacheData.user.kpt_logs.edges.push(cacheData.user.kpt_logs.edges[0]);
+          const newKPTLog = data.createKptLogMutation.kpt_log;
+          const cacheData = cache.readQuery({ query: Queries.GET_KPT_LOGS });
+          cacheData.kpt_logs.push(newKPTLog);
           cache.writeQuery({
-            query: GET_KPT_LOG_LIST,
+            query: Queries.GET_KPT_LOGS,
             data: cacheData,
           });
         }}
