@@ -24,83 +24,56 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-class Count extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
+const Dashboard = () => {
+  const GET_KPT_LOG_LIST = `
+  {
+    user {
+      kpt_logs {
+        edges {
+          node {
+            id
+            keep
+            problem
+            try
+          }
+        }
+      }
+    }
+  }`;
 
-  handleClick() {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  }
+  const kptLogItems = keptLogs => (
+    <div>
+      <div>KPT履歴</div>
+      {keptLogs.edges.map(edge => (
+        <ul key={`key-keptlog-${edge.node.id}`}>
+          <li key={`key-keptlog-keep-${edge.node.id}`}>{edge.node.keep}</li>
+          <li key={`key-keptlog-problem-${edge.node.id}`}>
+            {edge.node.problem}
+          </li>
+          <li key={`key-keptlog-try-${edge.node.id}`}>{edge.node.try}</li>
+        </ul>
+      ))}
+    </div>
+  );
 
-  render() {
-    return (
-      <ApolloProvider client={client}>
+  return (
+    <ApolloProvider client={client}>
+      <div>
         <Query
           query={gql`
-            {
-              user {
-                id
-                name
-                email
-                kpt_logs {
-                  edges {
-                    node {
-                      id
-                      keep
-                      problem
-                      try
-                    }
-                  }
-                }
-              }
-            }
+            ${GET_KPT_LOG_LIST}
           `}
         >
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;
-            console.log(data.user.kpt_logs);
 
-            return (
-              <div>
-                <div>
-                  <div>ユーザー名</div>
-                  <div>{data.user.name}</div>
-                </div>
-                <div>
-                  <div>メールアドレス</div>
-                  <div>{data.user.email}</div>
-                </div>
-                <div>
-                  <div>Kpt履歴</div>
-                  {data.user.kpt_logs.edges.map(edge => (
-                    <ul key={`key-keptlog-${edge.node.id}`}>
-                      <li key={`key-keptlog-keep-${edge.node.id}`}>
-                        {edge.node.keep}
-                      </li>
-                      <li key={`key-keptlog-problem-${edge.node.id}`}>
-                        {edge.node.problem}
-                      </li>
-                      <li key={`key-keptlog-try-${edge.node.id}`}>
-                        {edge.node.try}
-                      </li>
-                    </ul>
-                  ))}
-                </div>
-              </div>
-            );
+            return <div>{kptLogItems(data.user.kpt_logs)}</div>;
           }}
         </Query>
-      </ApolloProvider>
-    );
-  }
-}
+      </div>
+    </ApolloProvider>
+  );
+};
 
-export default Count;
+export default Dashboard;
