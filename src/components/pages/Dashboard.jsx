@@ -27,7 +27,7 @@ const client = new ApolloClient({
 
 const Dashboard = () => {
   const kptLogItems = keptLogs => (
-    <div>
+    <div className="test">
       <div>KPT履歴</div>
       {keptLogs.map(kptLog => (
         <ul key={`key-keptlog-${kptLog.id}`}>
