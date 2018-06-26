@@ -18,6 +18,7 @@
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "hoek": "^5.0.3",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.6",
