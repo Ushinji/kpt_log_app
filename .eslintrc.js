@@ -25,5 +25,6 @@ module.exports = {
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],
+    "react/jsx-one-expression-per-line": "off",
   }
 };
