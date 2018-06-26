@@ -1,0 +1,30 @@
+.pannel {
+  margin-bottom: 24px;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+
+  &__header {
+    padding: 8px 16px;
+    border-bottom: 1px solid #e2e2e2;
+    background-color: #F6F7F9;
+  }
+
+  &__body {
+    padding: 16px 16px;
+
+    &__item {
+      margin-bottom: 24px;
+
+      &__title {
+        color: #4F4F4F;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      &__content {
+        color: #828282;
+        font-size: 14px;
+      }
+    }
+  }
+}

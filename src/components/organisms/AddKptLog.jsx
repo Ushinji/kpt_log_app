@@ -6,9 +6,9 @@ class AddKptLog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      keep: '',
-      problem: '',
-      try: '',
+      keepForm: '',
+      problemForm: '',
+      tryForm: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,22 +22,23 @@ class AddKptLog extends React.Component {
 
   handleSubmit(e, createKptLog) {
     e.preventDefault();
+    const { keepForm, problemForm, tryForm } = this.state;
     createKptLog({
       variables: {
-        keep: this.state.keep,
-        problem: this.state.problem,
-        try: this.state.try,
+        keep: keepForm,
+        problem: problemForm,
+        try: tryForm,
       },
     });
     this.setState({
-      keep: '',
-      problem: '',
-      try: '',
+      keepForm: '',
+      problemForm: '',
+      tryForm: '',
     });
   }
 
   render() {
-    const { keep, problem } = this.state;
+    const { keepForm, problemForm, tryForm } = this.state;
 
     return (
       <Mutation
@@ -61,25 +62,25 @@ class AddKptLog extends React.Component {
             >
               <textarea
                 id="kpt-keep"
-                name="keep"
-                value={keep}
+                name="keepForm"
+                value={keepForm}
                 onChange={this.handleChange}
               />
 
               <textarea
                 id="kpt-problem"
-                name="problem"
-                value={problem}
+                name="problemForm"
+                value={problemForm}
                 onChange={this.handleChange}
               />
 
               <textarea
                 id="kpt-try"
-                name="try"
-                value={this.state.try}
+                name="tryForm"
+                value={tryForm}
                 onChange={this.handleChange}
               />
-              <button type="submit">Create KPT LOG</button>
+              <button type="submit">Create KPT LOG </button>
             </form>
           </div>
         )}
