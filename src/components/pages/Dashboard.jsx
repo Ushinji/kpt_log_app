@@ -1,10 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import Modal from 'react-modal';
 import Queries from '../../queries';
 import Pannel from '../molecules/Pannel';
-
-Modal.setAppElement('#root');
+import AddKptLogModal from '../organisms/AddKptLogModal';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -55,16 +53,11 @@ class Dashboard extends React.Component {
           }}
         </Query>
 
-        <Modal
+        <AddKptLogModal
           isOpen={modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
-        >
-          <button type="button" onClick={this.closeModal}>
-            モーダルを閉じる
-          </button>
-          <div>ほげえええええええ</div>
-        </Modal>
+          closeModal={this.closeModal}
+          contentLabel="AddKPTLogModal"
+        />
         <button type="button" onClick={this.openModal}>
           モーダルを開く
         </button>
