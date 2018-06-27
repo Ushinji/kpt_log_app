@@ -26,23 +26,29 @@ class AddKptLogModal extends React.Component {
   }
 
   handleSubmit(e, createKptLog) {
-    const { closeModal } = this.props;
-
     e.preventDefault();
+
+    const { closeModal } = this.props;
     const { keepForm, problemForm, tryForm } = this.state;
-    createKptLog({
-      variables: {
-        keep: keepForm,
-        problem: problemForm,
-        try: tryForm,
-      },
-    });
-    this.setState({
-      keepForm: '',
-      problemForm: '',
-      tryForm: '',
-    });
-    closeModal();
+
+    if (
+      // eslint-disable-next-line no-alert
+      window.confirm('この内容で作成しますか？')
+    ) {
+      createKptLog({
+        variables: {
+          keep: keepForm,
+          problem: problemForm,
+          try: tryForm,
+        },
+      });
+      this.setState({
+        keepForm: '',
+        problemForm: '',
+        tryForm: '',
+      });
+      closeModal();
+    }
   }
 
   handleClose() {
@@ -64,8 +70,9 @@ class AddKptLogModal extends React.Component {
     return (
       <Modal
         isOpen={isOpen}
-        onRequestClose={this.handleClose}
         contentLabel={contentLabel}
+        className="modal--container"
+        overlayClassName="modal--overlay"
       >
         <Mutation
           mutation={Queries.CREATE_KPT_LOG}
@@ -81,35 +88,67 @@ class AddKptLogModal extends React.Component {
         >
           {createKptLog => (
             <div>
+              <div className="modal--container--title">KPTの新規作成</div>
               <form
                 onSubmit={e => {
                   this.handleSubmit(e, createKptLog);
                 }}
               >
-                <textarea
-                  id="kpt-keep"
-                  name="keepForm"
-                  value={keepForm}
-                  onChange={this.handleChange}
-                />
+                <div className="modal--container--body">
+                  <label htmlFor="kpt-keep">
+                    Keep
+                    <textarea
+                      id="kpt-keep"
+                      name="keepForm"
+                      value={keepForm}
+                      onChange={this.handleChange}
+                      className="modal--body__item__form"
+                    />
+                  </label>
+                </div>
 
-                <textarea
-                  id="kpt-problem"
-                  name="problemForm"
-                  value={problemForm}
-                  onChange={this.handleChange}
-                />
+                <div className="modal--container--body">
+                  <label htmlFor="kpt-problem">
+                    Problem
+                    <textarea
+                      id="kpt-problem"
+                      name="problemForm"
+                      value={problemForm}
+                      onChange={this.handleChange}
+                      className="modal--body__item__form"
+                    />
+                  </label>
+                </div>
 
-                <textarea
-                  id="kpt-try"
-                  name="tryForm"
-                  value={tryForm}
-                  onChange={this.handleChange}
-                />
-                <button type="submit">新規作成</button>
-                <button type="button" onClick={this.handleClose}>
-                  閉じる
-                </button>
+                <div className="modal--container--body">
+                  <label htmlFor="kpt-try">
+                    Try
+                    <textarea
+                      id="kpt-try"
+                      name="tryForm"
+                      value={tryForm}
+                      onChange={this.handleChange}
+                      className="modal--body__item__form"
+                    />
+                  </label>
+                </div>
+
+                <div className="modal--container--actions">
+                  <div className="modal--container--actions--item">
+                    <button type="submit" className="button button__primary">
+                      新規作成
+                    </button>
+                  </div>
+                  <div className="modal--container--actions--item">
+                    <button
+                      type="button"
+                      onClick={this.handleClose}
+                      className="button"
+                    >
+                      閉じる
+                    </button>
+                  </div>
+                </div>
               </form>
             </div>
           )}
