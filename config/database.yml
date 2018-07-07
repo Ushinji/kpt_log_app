@@ -21,6 +21,7 @@ test:
 
 production:
   <<: *default
-  database: react_rails
-  username: root
-  password: <%= ENV['REACT_RAILS_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
