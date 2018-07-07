@@ -1,7 +1,10 @@
 module.exports = {
   extends: [
     'airbnb',
-    'prettier'
+    'prettier',
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard"
   ],
   plugins: [
     'prettier',
@@ -25,5 +28,6 @@ module.exports = {
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],
+    //"react/jsx-one-expression-per-line": "off",
   }
 };
