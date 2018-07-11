@@ -5,7 +5,8 @@
     "start": "webpack-dev-server --mode development --output '[name].js'",
     "clean": "rimraf public/dist",
     "build:production": "cross-env NODE_ENV=production webpack --mode production",
-    "build": "npm-run-all clean build:production"
+    "build": "npm-run-all clean build:production",
+    "heroku-postbuild": "npm-run-all clean build:production"
   },
   "dependencies": {
     "apollo-boost": "^0.1.10",
