@@ -13,6 +13,7 @@ gem 'graphiql-rails'
 
 group :production do
   gem 'server-starter'
+  gem "rails_12factor"
 end
 
 group :development, :test do
