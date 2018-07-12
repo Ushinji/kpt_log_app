@@ -1,0 +1,54 @@
+.kpt-log {
+  display: flex;
+  width: 100%;
+  color: #4F4F4F;
+  background-color: #FFFFFF;
+  height: calc(100vh - 40px);
+
+  &--list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    &--title {
+      padding: 8px 24px;
+      line-height: 32px;
+      font-size: 16px;
+    }
+
+    &--item {
+      padding: 4px 24px;
+      width: 160px;
+      background-color: none;
+      vertical-align: bottom;
+      line-height: 32px;
+      font-size: 12px;
+      color: #4F4F4F;
+      font-weight: 300;
+      cursor: pointer;
+
+      &:hover{
+        background-color: #F2F2F2
+      }
+
+      &__odd {
+        background-color: #fcfcfc;
+
+        &:hover{
+          background-color: #F2F2F2
+        }
+      }
+    }
+  }
+
+  &--detail {
+    &--header {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    &--body {
+
+    }
+  }
+}

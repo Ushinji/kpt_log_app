@@ -1,5 +1,5 @@
 @import 'pannel';
-@import 'kptLog';
+@import 'kpt-log';
 @import 'modal';
 @import 'button';
 @import 'side-menu';
@@ -24,6 +24,7 @@ body {
     padding: 8px;
     font-size: 18px;
     font-weight: 600;
+    height: 24px;
   }
 
   &--body{
