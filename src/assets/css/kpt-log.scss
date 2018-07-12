@@ -42,13 +42,21 @@
   }
 
   &--detail {
+    padding: 20px 40px;
+    border-left: 1px solid #F2F2F2;
+
     &--header {
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom: 24px;
     }
 
     &--body {
 
+    }
+
+    &--notice {
+      font-size: 14px;
+      color: #8F8F8F
     }
   }
 }
