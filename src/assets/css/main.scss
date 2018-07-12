@@ -1,10 +1,35 @@
 @import 'pannel';
-@import 'kptLog';
+@import 'kpt-log';
 @import 'modal';
 @import 'button';
+@import 'side-menu';
+
+#root {
+  width: 100%;
+}
 
 body {
   background-color: #F9F9F9;
+  margin: 0px;
+  display: flex;
+}
+
+.container{
+  width: 100%;
+
+  &--header{
+    width: 100%;
+    background-color: rgb(98, 175, 235);
+    color: white;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    height: 24px;
+  }
+
+  &--body{
+    display: flex;
+  }
 }
 
 textarea {
