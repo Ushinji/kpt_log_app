@@ -9,9 +9,11 @@ export default {
         problem
         try
         created_at
+        updated_at
       }
     }
   `,
+
   CREATE_KPT_LOG: gql`
     mutation createKptLog($keep: String!, $problem: String!, $try: String!) {
       createKptLogMutation(
@@ -23,6 +25,7 @@ export default {
           problem
           try
           created_at
+          updated_at
         }
       }
     }
