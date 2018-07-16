@@ -43,12 +43,39 @@
   }
 
   &--detail {
-    padding: 20px 40px;
+    padding: 32px 40px;
     border-left: 1px solid #F2F2F2;
 
     &--header {
       font-size: 20px;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #cecece;
+      padding-bottom: 4px;
+
+      &--date {
+      }
+
+      &--actions {
+        display:flex;
+
+        &--item {
+          padding: 0 8px;
+          cursor: pointer;
+
+          &:hover {
+            background: #F2F2F2;
+            border-radius: 16px;
+          }
+
+          i.material-icons {
+            color: #a7acb2;
+            font-size: 18px;
+            vertical-align: text-bottom;
+          }
+        }
+      }
     }
 
     &--body {

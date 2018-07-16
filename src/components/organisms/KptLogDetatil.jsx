@@ -37,10 +37,25 @@ class KptLogDetatil extends React.Component {
     return (
       <div>
         <div className="kpt-log--detail--header">
-          {moment(kptLog.created_at).format('YYYY/MM/DD(ddd)')}
-        </div>
-        <div className="" onClick={this.openModal} role="presentation">
-          編集
+          <div className="kpt-log--detail--header--date">
+            {moment(kptLog.created_at).format('YYYY/MM/DD(ddd)')}
+          </div>
+          <div className="kpt-log--detail--header--actions">
+            <div
+              className="kpt-log--detail--header--actions--item"
+              onClick={this.openModal}
+              role="presentation"
+            >
+              <i className="material-icons">border_color</i>
+            </div>
+            <div
+              className="kpt-log--detail--header--actions--item"
+              onClick={this.openModal}
+              role="presentation"
+            >
+              <i className="material-icons">delete</i>
+            </div>
+          </div>
         </div>
 
         <EditKptLogModal
