@@ -18,13 +18,13 @@ body {
   width: 100%;
 
   &--header{
-    width: 100%;
     background-color: rgb(98, 175, 235);
     color: white;
-    padding: 8px;
+    padding: 8px 8px 8px 28px;
     font-size: 18px;
     font-weight: 600;
-    height: 24px;
+    height: 32px;
+    line-height: 32px;
   }
 
   &--body{

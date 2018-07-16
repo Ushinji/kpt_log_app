@@ -33,9 +33,13 @@ class SideMenu extends React.Component {
           onClick={this.openModal}
           role="presentation"
         >
+          <i className="material-icons">add</i>
           新規作成
         </div>
-        <div className="side-menu--item">作成履歴</div>
+        <div className="side-menu--item">
+          <i className="material-icons">date_range</i>
+          作成履歴
+        </div>
         <AddKptLogModal
           isOpen={modalIsOpen}
           closeModal={this.closeModal}

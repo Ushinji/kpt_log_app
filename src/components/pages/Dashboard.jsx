@@ -6,7 +6,7 @@ import KptLog from '../organisms/KptLog';
 
 const Dashboard = () => (
   <div className="container">
-    <div className="container--header">KPTLog</div>
+    <div className="container--header">KPTLogApp</div>
     <div className="container--body">
       <SideMenu />
       <Query query={Queries.GET_KPT_LOGS}>
