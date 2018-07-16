@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
+import { Mutation } from 'react-apollo';
+import Queries from '../../queries';
 import Pannel from '../molecules/Pannel';
 import EditKptLogModal from './EditKptLogModal';
 
@@ -16,6 +18,7 @@ class KptLogDetatil extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   openModal() {
@@ -28,6 +31,20 @@ class KptLogDetatil extends React.Component {
     this.setState({
       modalIsOpen: false,
     });
+  }
+
+  handleDelete(deleteKptLog) {
+    const { kptLog } = this.props;
+    if (
+      // eslint-disable-next-line no-alert
+      window.confirm('本当に削除してもよろしいですか？')
+    ) {
+      deleteKptLog({
+        variables: {
+          id: kptLog.id,
+        },
+      });
+    }
   }
 
   render() {
@@ -48,13 +65,34 @@ class KptLogDetatil extends React.Component {
             >
               <i className="material-icons">border_color</i>
             </div>
-            <div
-              className="kpt-log--detail--header--actions--item"
-              onClick={this.openModal}
-              role="presentation"
+            <Mutation
+              mutation={Queries.DELETE_KPT_LOG}
+              update={cache => {
+                const cacheData = cache.readQuery({
+                  query: Queries.GET_KPT_LOGS,
+                });
+                const index = cacheData.kpt_logs.findIndex(
+                  k => k.id === kptLog.id
+                );
+                cacheData.kpt_logs.splice(index, 1);
+                cache.writeQuery({
+                  query: Queries.GET_KPT_LOGS,
+                  data: cacheData,
+                });
+              }}
             >
-              <i className="material-icons">delete</i>
-            </div>
+              {deleteKptLog => (
+                <div
+                  className="kpt-log--detail--header--actions--item"
+                  onClick={() => {
+                    this.handleDelete(deleteKptLog);
+                  }}
+                  role="presentation"
+                >
+                  <i className="material-icons">delete</i>
+                </div>
+              )}
+            </Mutation>
           </div>
         </div>
 

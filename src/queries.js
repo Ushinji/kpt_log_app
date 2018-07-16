@@ -52,4 +52,12 @@ export default {
       }
     }
   `,
+
+  DELETE_KPT_LOG: gql`
+    mutation deleteKptLog($id: ID!) {
+      deleteKptLogMutation(input: { id: $id }) {
+        deleted_id
+      }
+    }
+  `,
 };
