@@ -17,6 +17,16 @@ class KptLog extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { kptLogs } = nextProps;
+    const { selectedKptLog } = this.state;
+
+    const index = kptLogs.findIndex(k => k.id === selectedKptLog.id);
+    this.setState({
+      selectedKptLog: kptLogs[index],
+    });
+  }
+
   onClick(kptLog) {
     this.setState({
       selectedKptLog: kptLog,
