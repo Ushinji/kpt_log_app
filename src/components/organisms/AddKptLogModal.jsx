@@ -79,7 +79,7 @@ class AddKptLogModal extends React.Component {
           update={(cache, { data }) => {
             const newKPTLog = data.createKptLogMutation.kpt_log;
             const cacheData = cache.readQuery({ query: Queries.GET_KPT_LOGS });
-            cacheData.kpt_logs.push(newKPTLog);
+            cacheData.kpt_logs.unshift(newKPTLog);
             cache.writeQuery({
               query: Queries.GET_KPT_LOGS,
               data: cacheData,
